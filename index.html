@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WIRED TO WIN — Nervous System Training Program</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080808;
+  --surface:#111;
+  --surface2:#181818;
+  --surface3:#202020;
+  --border:#252525;
+  --border2:#333;
+  --red:#c0392b;
+  --red2:#e74c3c;
+  --gold:#d4a843;
+  --gold2:#f0c060;
+  --text:#e8e4dc;
+  --muted:#7a7570;
+  --dim:#3a3530;
+  --green:#27ae60;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'IBM Plex Sans',sans-serif;
+  font-weight:300;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--red)}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;gap:0;
+  padding:0 24px;
+  height:52px;
+  background:rgba(8,8,8,0.95);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(8px);
+}
+.nav-logo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:20px;
+  letter-spacing:3px;
+  color:var(--text);
+  margin-right:auto;
+  display:flex;align-items:center;gap:10px;
+}
+.nav-logo span{
+  width:8px;height:8px;
+  background:var(--red);
+  border-radius:50%;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
+.nav-tabs{display:flex;gap:0}
+.nav-tab{
+  padding:0 16px;
+  height:52px;
+  display:flex;align-items:center;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--muted);
+  cursor:pointer;
+  border-bottom:2px solid transparent;
+  background:none;border-top:none;border-left:none;border-right:none;
+  transition:all 0.15s;
+  text-transform:uppercase;
+}
+.nav-tab:hover{color:var(--text)}
+.nav-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* HERO */
+.hero{
+  padding:120px 24px 60px;
+  max-width:900px;
+  margin:0 auto;
+  position:relative;
+}
+.hero-eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:4px;
+  color:var(--red);
+  margin-bottom:20px;
+  text-transform:uppercase;
+}
+.hero-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(52px,8vw,96px);
+  line-height:0.92;
+  letter-spacing:2px;
+  color:var(--text);
+  margin-bottom:24px;
+}
+.hero-title em{color:var(--red);font-style:normal}
+.hero-sub{
+  font-size:15px;
+  color:var(--muted);
+  line-height:1.7;
+  max-width:520px;
+  margin-bottom:40px;
+}
+.hero-stats{
+  display:flex;gap:32px;flex-wrap:wrap;
+  border-top:1px solid var(--border);
+  padding-top:32px;
+}
+.stat-item{display:flex;flex-direction:column;gap:4px}
+.stat-val{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:36px;
+  color:var(--gold);
+  line-height:1;
+}
+.stat-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--muted);
+  text-transform:uppercase;
+}
+
+/* SECTION TITLES */
+.section{padding:60px 24px;max-width:900px;margin:0 auto}
+.section-header{
+  display:flex;align-items:baseline;gap:16px;
+  margin-bottom:36px;
+  border-bottom:1px solid var(--border);
+  padding-bottom:16px;
+}
+.section-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:13px;
+  color:var(--red);
+  letter-spacing:2px;
+}
+.section-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:28px;
+  letter-spacing:2px;
+  color:var(--text);
+}
+.section-sub{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--muted);
+  margin-left:auto;
+  text-transform:uppercase;
+}
+
+/* PHASE CARDS */
+.phase-grid{display:flex;flex-direction:column;gap:2px}
+.phase-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-left:3px solid var(--dim);
+  padding:20px 24px;
+  cursor:pointer;
+  transition:all 0.2s;
+  position:relative;
+  overflow:hidden;
+}
+.phase-card:hover{border-color:var(--border2);background:var(--surface2)}
+.phase-card.active{border-left-color:var(--red);background:var(--surface2)}
+.phase-card.complete{border-left-color:var(--green)}
+.phase-header{display:flex;align-items:center;gap:14px}
+.phase-badge{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:11px;
+  letter-spacing:2px;
+  padding:4px 8px;
+  border:1px solid var(--border2);
+  color:var(--muted);
+  min-width:70px;
+  text-align:center;
+}
+.phase-card.active .phase-badge{border-color:var(--red);color:var(--red)}
+.phase-card.complete .phase-badge{border-color:var(--green);color:var(--green)}
+.phase-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:18px;
+  letter-spacing:1px;
+  flex:1;
+}
+.phase-days{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  color:var(--muted);
+  letter-spacing:1px;
+}
+.phase-body{
+  display:none;
+  margin-top:20px;
+  padding-top:20px;
+  border-top:1px solid var(--border);
+}
+.phase-card.active .phase-body{display:block}
+.phase-desc{
+  font-size:13.5px;
+  color:var(--muted);
+  line-height:1.7;
+  margin-bottom:16px;
+}
+.phase-sessions{display:flex;flex-direction:column;gap:8px}
+.session-row{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:10px 12px;
+  background:var(--surface3);
+  border:1px solid var(--border);
+  border-radius:2px;
+  cursor:pointer;
+  transition:border-color 0.15s;
+}
+.session-row:hover{border-color:var(--red)}
+.session-num{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  color:var(--red);
+  min-width:28px;
+  padding-top:1px;
+}
+.session-info{flex:1}
+.session-name{font-size:13px;font-weight:500;margin-bottom:2px}
+.session-meta{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  color:var(--muted);
+  letter-spacing:0.5px;
+}
+.session-check{
+  width:18px;height:18px;
+  border:1px solid var(--border2);
+  border-radius:2px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;
+  color:var(--green);
+  flex-shrink:0;
+  margin-top:1px;
+}
+.session-check.done{background:rgba(39,174,96,0.1);border-color:var(--green)}
+
+/* DAILY ROUTINE */
+.routine-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:600px){.routine-grid{grid-template-columns:1fr}}
+.routine-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:20px;
+}
+.routine-time{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--gold);
+  margin-bottom:12px;
+  text-transform:uppercase;
+}
+.routine-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:18px;
+  letter-spacing:1px;
+  margin-bottom:14px;
+}
+.routine-steps{list-style:none;display:flex;flex-direction:column;gap:8px}
+.routine-steps li{
+  display:flex;gap:10px;
+  font-size:12.5px;
+  color:var(--muted);
+  line-height:1.6;
+}
+.step-n{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  color:var(--red);
+  min-width:16px;
+  padding-top:2px;
+}
+
+/* PROTOCOLS */
+.proto-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.proto-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:16px 18px;
+  cursor:pointer;
+  transition:all 0.15s;
+  position:relative;
+}
+.proto-card:hover{border-color:var(--gold);background:var(--surface2)}
+.proto-tag{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  letter-spacing:2px;
+  color:var(--muted);
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.proto-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:17px;
+  letter-spacing:1px;
+  margin-bottom:6px;
+  color:var(--text);
+}
+.proto-desc{font-size:12px;color:var(--muted);line-height:1.6}
+.proto-type{
+  position:absolute;top:12px;right:12px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  padding:2px 6px;
+  border:1px solid var(--border2);
+  color:var(--dim);
+  text-transform:uppercase;
+}
+.proto-type.daily{border-color:var(--red);color:var(--red)}
+.proto-type.situational{border-color:var(--gold);color:var(--gold)}
+
+/* COACH PANEL */
+.coach-panel{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-top:3px solid var(--red);
+  overflow:hidden;
+}
+.coach-header{
+  display:flex;align-items:center;gap:12px;
+  padding:16px 20px;
+  border-bottom:1px solid var(--border);
+}
+.coach-avatar{
+  width:36px;height:36px;
+  background:var(--red);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:14px;
+  letter-spacing:1px;
+  color:#fff;
+  flex-shrink:0;
+}
+.coach-info{flex:1}
+.coach-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:14px;
+  letter-spacing:2px;
+}
+.coach-status{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  color:var(--muted);
+  margin-top:1px;
+}
+.coach-key-input{
+  display:flex;gap:8px;
+  padding:12px 20px;
+  border-bottom:1px solid var(--border);
+  background:var(--surface2);
+}
+.coach-key-input input{
+  flex:1;
+  background:var(--surface3);
+  border:1px solid var(--border2);
+  color:var(--text);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  padding:7px 12px;
+  outline:none;
+}
+.coach-key-input input:focus{border-color:var(--red)}
+.coach-key-input button{
+  padding:7px 14px;
+  background:var(--red);
+  border:none;color:#fff;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:1px;
+  cursor:pointer;
+}
+.chat-messages{
+  height:340px;
+  overflow-y:auto;
+  padding:20px;
+  display:flex;flex-direction:column;gap:14px;
+}
+.chat-messages::-webkit-scrollbar{width:3px}
+.chat-messages::-webkit-scrollbar-thumb{background:var(--border2)}
+.msg{display:flex;gap:10px;align-items:flex-start}
+.msg.user{flex-direction:row-reverse}
+.msg-avatar{
+  width:26px;height:26px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  letter-spacing:1px;
+  flex-shrink:0;
+  margin-top:1px;
+}
+.msg-avatar.coach{background:var(--red);color:#fff}
+.msg-avatar.user{background:var(--surface3);border:1px solid var(--border2);color:var(--muted)}
+.msg-bubble{
+  max-width:80%;
+  padding:10px 14px;
+  font-size:13px;
+  line-height:1.65;
+  border:1px solid var(--border);
+}
+.msg-bubble.coach{
+  background:var(--surface2);
+  border-left:2px solid var(--red);
+}
+.msg-bubble.user{
+  background:var(--surface3);
+  text-align:right;
+}
+.msg-bubble strong{color:var(--gold);font-weight:500}
+.typing-ind{display:flex;gap:4px;padding:10px 14px;background:var(--surface2);border:1px solid var(--border);border-left:2px solid var(--red);width:fit-content}
+.typing-ind span{width:4px;height:4px;background:var(--red);border-radius:50%;animation:blink 1.2s infinite}
+.typing-ind span:nth-child(2){animation-delay:0.2s}
+.typing-ind span:nth-child(3){animation-delay:0.4s}
+@keyframes blink{0%,80%,100%{opacity:0.15}40%{opacity:1}}
+.quick-btns{
+  padding:12px 20px;
+  display:flex;flex-wrap:wrap;gap:6px;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  background:var(--surface2);
+}
+.qbtn{
+  padding:5px 10px;
+  background:none;
+  border:1px solid var(--border2);
+  color:var(--muted);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.5px;
+  cursor:pointer;
+  transition:all 0.15s;
+  text-transform:uppercase;
+}
+.qbtn:hover{border-color:var(--red);color:var(--text)}
+.chat-input-row{
+  display:flex;gap:0;
+  padding:14px 20px;
+}
+.chat-input{
+  flex:1;
+  background:var(--surface2);
+  border:1px solid var(--border2);
+  border-right:none;
+  color:var(--text);
+  font-family:'IBM Plex Sans',sans-serif;
+  font-size:13px;
+  padding:10px 14px;
+  outline:none;
+  resize:none;
+  min-height:42px;
+  max-height:100px;
+}
+.chat-input:focus{border-color:var(--red)}
+.chat-send{
+  width:44px;
+  background:var(--red);
+  border:1px solid var(--red);
+  color:#fff;font-size:16px;
+  cursor:pointer;transition:opacity 0.15s;
+  display:flex;align-items:center;justify-content:center;
+}
+.chat-send:hover{opacity:0.85}
+.chat-send:disabled{opacity:0.3;cursor:not-allowed}
+
+/* PROGRESS TRACKER */
+.tracker-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+.tracker-day{
+  aspect-ratio:1;
+  background:var(--surface);
+  border:1px solid var(--border);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:4px;
+  cursor:pointer;
+  transition:all 0.15s;
+  position:relative;
+}
+.tracker-day:hover{border-color:var(--border2)}
+.tracker-day.done{background:rgba(39,174,96,0.08);border-color:rgba(39,174,96,0.3)}
+.tracker-day.today{border-color:var(--red);background:rgba(192,57,43,0.06)}
+.tracker-day-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:24px;
+  color:var(--dim);
+  line-height:1;
+}
+.tracker-day.done .tracker-day-num{color:var(--green)}
+.tracker-day.today .tracker-day-num{color:var(--red)}
+.tracker-day-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  color:var(--dim);
+  letter-spacing:1px;
+  text-align:center;
+  padding:0 4px;
+}
+.tracker-day.done .tracker-day-label{color:rgba(39,174,96,0.6)}
+.tracker-day.today .tracker-day-label{color:var(--muted)}
+.phase-indicator{
+  position:absolute;bottom:6px;left:50%;transform:translateX(-50%);
+  width:4px;height:4px;border-radius:50%;
+  background:var(--dim);
+}
+.tracker-day.done .phase-indicator{background:var(--green)}
+.tracker-day.today .phase-indicator{background:var(--red)}
+
+/* PROGRESS BAR */
+.progress-bar-wrap{
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:20px 24px;
+  margin-bottom:24px;
+}
+.progress-meta{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:12px;
+}
+.progress-label{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:14px;
+  letter-spacing:2px;
+  color:var(--muted);
+}
+.progress-pct{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:28px;
+  color:var(--gold);
+}
+.progress-bar{
+  height:4px;background:var(--surface3);
+  position:relative;overflow:hidden;
+}
+.progress-fill{
+  height:100%;background:linear-gradient(90deg,var(--red),var(--gold));
+  transition:width 0.5s ease;
+}
+.phase-markers{
+  display:flex;margin-top:6px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  color:var(--dim);
+  letter-spacing:1px;
+}
+.phase-marker{flex:1;text-align:center}
+
+/* DIVIDER */
+.divider{height:1px;background:var(--border);margin:0 24px}
+
+/* SCIENCE PILLS */
+.science-grid{display:flex;flex-wrap:wrap;gap:8px}
+.sci-pill{
+  padding:6px 12px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.5px;
+  color:var(--muted);
+  cursor:pointer;
+  transition:all 0.15s;
+}
+.sci-pill:hover{border-color:var(--gold);color:var(--text)}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--border);
+  padding:24px;
+  text-align:center;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  color:var(--dim);
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+/* MODAL */
+.modal-overlay{
+  display:none;
+  position:fixed;inset:0;z-index:200;
+  background:rgba(0,0,0,0.85);
+  align-items:center;justify-content:center;
+  padding:20px;
+}
+.modal-overlay.open{display:flex}
+.modal{
+  background:var(--surface);
+  border:1px solid var(--border2);
+  border-top:3px solid var(--red);
+  max-width:540px;width:100%;
+  max-height:80vh;
+  overflow-y:auto;
+}
+.modal-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 20px;
+  border-bottom:1px solid var(--border);
+}
+.modal-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:20px;
+  letter-spacing:1px;
+}
+.modal-close{
+  background:none;border:1px solid var(--border2);
+  color:var(--muted);width:28px;height:28px;
+  cursor:pointer;font-size:14px;
+  display:flex;align-items:center;justify-content:center;
+}
+.modal-close:hover{border-color:var(--red);color:var(--text)}
+.modal-body{padding:20px}
+.modal-body p{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:12px}
+.modal-body ul{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.modal-body li{
+  display:flex;gap:10px;font-size:13px;color:var(--muted);line-height:1.6;
+}
+.modal-body li::before{content:"—";color:var(--red);flex-shrink:0}
+.modal-tag{
+  display:inline-block;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  letter-spacing:1px;
+  padding:3px 8px;
+  border:1px solid var(--red);
+  color:var(--red);
+  margin-bottom:14px;
+  text-transform:uppercase;
+}
+
+/* ANIM */
+.fade-in{opacity:0;transform:translateY(12px);animation:fadeIn 0.4s ease forwards}
+@keyframes fadeIn{to{opacity:1;transform:translateY(0)}}
+.stagger>*{opacity:0;transform:translateY(10px)}
+.stagger.loaded>*{animation:fadeIn 0.35s ease forwards}
+.stagger.loaded>*:nth-child(1){animation-delay:0.05s}
+.stagger.loaded>*:nth-child(2){animation-delay:0.1s}
+.stagger.loaded>*:nth-child(3){animation-delay:0.15s}
+.stagger.loaded>*:nth-child(4){animation-delay:0.2s}
+.stagger.loaded>*:nth-child(5){animation-delay:0.25s}
+.stagger.loaded>*:nth-child(6){animation-delay:0.3s}
+
+/* KEY REQUIRED */
+.key-required{
+  display:none;
+  padding:16px 20px;
+  background:rgba(192,57,43,0.08);
+  border:1px solid rgba(192,57,43,0.2);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  color:var(--muted);
+  text-align:center;
+  margin:0 20px 12px;
+}
+.key-required.show{display:block}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><span></span>WIRED TO WIN</div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showSection('program')">PROGRAM</button>
+    <button class="nav-tab" onclick="showSection('routines')">ROUTINES</button>
+    <button class="nav-tab" onclick="showSection('protocols')">PROTOCOLS</button>
+    <button class="nav-tab" onclick="showSection('coach')">COACH</button>
+    <button class="nav-tab" onclick="showSection('tracker')">TRACKER</button>
+  </div>
+</nav>
+
+<!-- PROGRAM -->
+<div id="section-program">
+<div class="hero fade-in">
+  <div class="hero-eyebrow">EPIC — ELITE PERFORMERS IN COLLABORATION</div>
+  <div class="hero-title">NERVOUS<br>SYSTEM<br><em>ENGINEERING</em></div>
+  <div class="hero-sub">Pressure doesn't build character. It exposes the code running your nervous system. This is your rewiring curriculum — 120 days to install a new operating system. Then continuous conditioning forever.</div>
+  <div class="hero-stats">
+    <div class="stat-item"><div class="stat-val">120</div><div class="stat-label">Day Foundation</div></div>
+    <div class="stat-item"><div class="stat-val">14</div><div class="stat-label">Core Rewires</div></div>
+    <div class="stat-item"><div class="stat-val">∞</div><div class="stat-label">Conditioning Phase</div></div>
+    <div class="stat-item"><div class="stat-val">3</div><div class="stat-label">Pillars: Bio·Psych·Structural</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div class="section-title">THE 120-DAY CURRICULUM</div>
+    <div class="section-sub">Click phase to expand</div>
+  </div>
+
+  <div class="phase-grid stagger" id="phase-grid">
+
+    <div class="phase-card active" onclick="togglePhase(this)">
+      <div class="phase-header">
+        <div class="phase-badge">MONTH 0</div>
+        <div class="phase-name">BASELINE ASSESSMENT & INSTALLATION</div>
+        <div class="phase-days">Days 1–30 · Learn</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-desc">The host gives you one month to learn the 14 rewires before the 90-day application sprint. This phase is your intake — diagnosing your nervous system, identifying whether your blocks are biochemical, structural, or psychological, and installing your new identity before you have evidence it exists.</div>
+        <div class="phase-sessions" id="sessions-0"></div>
+      </div>
+    </div>
+
+    <div class="phase-card" onclick="togglePhase(this)">
+      <div class="phase-header">
+        <div class="phase-badge">PHASE 1</div>
+        <div class="phase-name">IDENTITY FRICTION</div>
+        <div class="phase-days">Days 31–60 · Apply</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-desc">The first application month is categorised by identity friction. Around Day 21 of this phase (Day 51 overall), you will hit a wall — doubt, impostor syndrome, resistance. This is NOT a signal to stop. The nervous system is fighting to preserve the old identity. That resistance is a reverse indicator you are on the right path. Push through with protocol discipline.</div>
+        <div class="phase-sessions" id="sessions-1"></div>
+      </div>
+    </div>
+
+    <div class="phase-card" onclick="togglePhase(this)">
+      <div class="phase-header">
+        <div class="phase-badge">PHASE 2</div>
+        <div class="phase-name">PATTERN STABILIZATION</div>
+        <div class="phase-days">Days 61–90 · Stabilize</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-desc">By Day 45 of active application (Day 75 overall), you will start making bold decisions and speaking with conviction your old self would have avoided. Patterns stabilize. The biochemical dominance loop runs more automatically. Identity begins to feel natural rather than performed.</div>
+        <div class="phase-sessions" id="sessions-2"></div>
+      </div>
+    </div>
+
+    <div class="phase-card" onclick="togglePhase(this)">
+      <div class="phase-header">
+        <div class="phase-badge">PHASE 3</div>
+        <div class="phase-name">IDENTITY TIPPING POINT</div>
+        <div class="phase-days">Days 91–120 · Cement</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-desc">By Day 90 of application, neural patterns are cemented. You will look back at who you were and not recognise the posture, tone, or operating system. The new identity is no longer performed — it is automatic. This is where the foundation locks in permanently.</div>
+        <div class="phase-sessions" id="sessions-3"></div>
+      </div>
+    </div>
+
+    <div class="phase-card" onclick="togglePhase(this)">
+      <div class="phase-header">
+        <div class="phase-badge">∞ ONGOING</div>
+        <div class="phase-name">CONTINUOUS CONDITIONING</div>
+        <div class="phase-days">Day 121+ · Forever</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-desc">The curriculum doesn't end. After the foundation is wired, you enter continuous conditioning — progressively harder chaos exposure, performance measurement under increasing pressure, and identity expansion. Low stakes → medium stakes → high stakes. The nervous system is always either growing or shrinking. There is no neutral.</div>
+        <div class="phase-sessions" id="sessions-4"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ROUTINES -->
+<div id="section-routines" style="display:none">
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <div class="section-title">DAILY TRAINING RITUALS</div>
+    <div class="section-sub">Non-negotiable daily architecture</div>
+  </div>
+  <div class="routine-grid stagger" id="routine-grid">
+
+    <div class="routine-card">
+      <div class="routine-time">MORNING — 11 TO 15 MIN</div>
+      <div class="routine-title">PRIMING SEQUENCE</div>
+      <ul class="routine-steps">
+        <li><span class="step-n">01</span><span><strong>Sky Before Screens.</strong> No phone. 16oz water + electrolytes. Delay caffeine 34 min. Walk outside, look at sky. Sets circadian rhythm, triggers healthy cortisol + dopamine.</span></li>
+        <li><span class="step-n">02</span><span><strong>Fascia Activation.</strong> Barefoot on grass if possible. Skips, pogo jumps, 2 sprints. Awakens foot complex, activates toe-to-glute neural connection.</span></li>
+        <li><span class="step-n">03</span><span><strong>15x15 Identity Install.</strong> Mirror. Power posture. Repeat "I am" statement 15x with intense emotion. Not an affirmation — a declaration. A command.</span></li>
+        <li><span class="step-n">04</span><span><strong>Visualization.</strong> 3 min eyes closed. Vividly feel yourself dominating your goals 30 days to 3 years out. Brain cannot distinguish real from vividly imagined.</span></li>
+      </ul>
+    </div>
+
+    <div class="routine-card">
+      <div class="routine-time">NIGHT — 10 TO 15 MIN</div>
+      <div class="routine-title">RECONSTRUCTION SEQUENCE</div>
+      <ul class="routine-steps">
+        <li><span class="step-n">01</span><span><strong>Triple D Review.</strong> 3 min exactly. What did you Do, Defer, Delete today? Closes open cognitive loops (Zeigarnik effect). Drops cortisol for sleep.</span></li>
+        <li><span class="step-n">02</span><span><strong>15x15 Night Install.</strong> Mirror again. Repeat identity statement 15x. Brain is most subconscious-connected at sleep onset — highest neuroplasticity window.</span></li>
+        <li><span class="step-n">03</span><span><strong>Tomorrow's 3 Priorities.</strong> Physical pen on paper. Three needle-movers only. Eliminates morning decision fatigue. Pre-loads the RAS overnight.</span></li>
+        <li><span class="step-n">04</span><span><strong>Sleep Architecture.</strong> Screens off 90 min prior. Pitch black, cold room. GABA + magnesium glycinate 300mg + L-theanine 1hr before bed. Engineers slow-wave REM.</span></li>
+      </ul>
+    </div>
+
+    <div class="routine-card">
+      <div class="routine-time">INTRA-DAY</div>
+      <div class="routine-title">PERFORMANCE PROTOCOLS</div>
+      <ul class="routine-steps">
+        <li><span class="step-n">→</span><span><strong>Deep Work Blocks.</strong> 90 min time-boxed sessions. Min 2x per week. No context switching. Batch all notifications.</span></li>
+        <li><span class="step-n">→</span><span><strong>Post-Meal Movement.</strong> 10–20 min walk after every meal. Blunts glucose spike. Preserves prefrontal cortex function.</span></li>
+        <li><span class="step-n">→</span><span><strong>Micro-Win Log.</strong> Track 5–10 small wins per day in a performance journal. Provides nervous system undeniable proof of success. Engineers confidence through data.</span></li>
+        <li><span class="step-n">→</span><span><strong>DAD Protocol.</strong> Every task: Delete → Automate → Delegate → Do. Protects cognitive bandwidth from decision fatigue.</span></li>
+      </ul>
+    </div>
+
+    <div class="routine-card">
+      <div class="routine-time">WEEKLY STRUCTURE</div>
+      <div class="routine-title">LOAD MANAGEMENT</div>
+      <ul class="routine-steps">
+        <li><span class="step-n">↑</span><span><strong>High-Output Days.</strong> Micro-dose strength training 10–20 min before performance. Trap bar jumps, fast cleans. Higher carbs (2g/kg). Prime the CNS without fatiguing it.</span></li>
+        <li><span class="step-n">↓</span><span><strong>Recovery Days.</strong> 20–30 min "motion is lotion" mobility. Zone 2 walks. Barefoot grounding. Lower carbs (0.5g/kg), higher healthy fats and anti-inflammatory foods.</span></li>
+        <li><span class="step-n">⚡</span><span><strong>Barefoot Training.</strong> 1–2 sessions/week completely barefoot. Strengthens toe-to-glute neural connection. Do NOT static stretch before — inhibits muscle function.</span></li>
+        <li><span class="step-n">📊</span><span><strong>HRV Check.</strong> Daily Oura/Whoop reading. If HRV is low: switch to recovery protocols. Fastest way to improve anything is to measure it.</span></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- PROTOCOLS -->
+<div id="section-protocols" style="display:none">
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <div class="section-title">ALL 14 PROTOCOLS</div>
+    <div class="section-sub">Click to view full instructions</div>
+  </div>
+  <div class="proto-grid stagger" id="proto-grid"></div>
+</div>
+
+<div class="section" style="padding-top:0">
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <div class="section-title">NEUROSCIENCE REFERENCES</div>
+    <div class="section-sub">The science behind the rewire</div>
+  </div>
+  <div class="science-grid" id="science-grid"></div>
+</div>
+</div>
+
+<!-- COACH -->
+<div id="section-coach" style="display:none">
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">05</div>
+    <div class="section-title">AI PERFORMANCE COACH</div>
+    <div class="section-sub">Powered by Claude · Wired2Win framework</div>
+  </div>
+
+  <div class="coach-panel">
+    <div class="coach-header">
+      <div class="coach-avatar">W2W</div>
+      <div class="coach-info">
+        <div class="coach-name">WIRE — NERVOUS SYSTEM COACH</div>
+        <div class="coach-status">EPIC Framework · Wired to Win · 77 Episodes of Source Knowledge</div>
+      </div>
+    </div>
+    <div class="coach-key-input">
+      <input type="password" id="api-key" placeholder="Paste your Anthropic API key to activate coach (stored locally only)" />
+      <button onclick="saveKey()">ACTIVATE</button>
+    </div>
+    <div class="key-required" id="key-msg">Add your Anthropic API key above to start coaching sessions</div>
+    <div class="chat-messages" id="chat-messages"></div>
+    <div class="quick-btns">
+      <button class="qbtn" onclick="sendQuick(`Run me through today's session — I'm on Day ${getDay()} of the program`)">TODAY'S SESSION</button>
+      <button class="qbtn" onclick="sendQuick('Diagnose my current block — is it biochemical, psychological, or structural?')">DIAGNOSE BLOCK</button>
+      <button class="qbtn" onclick="sendQuick('Give me my Go-Phrase and walk me through the State Activation Protocol')">STATE ACTIVATION</button>
+      <button class="qbtn" onclick="sendQuick('Run the 15x15 protocol with me right now')">15×15 NOW</button>
+      <button class="qbtn" onclick="sendQuick('I hit a wall. Run attribution retraining with me')">ATTRIBUTION RESET</button>
+      <button class="qbtn" onclick="sendQuick('What micro-wins should I stack today given my current sprint?')">MICRO-WIN STACK</button>
+    </div>
+    <div class="chat-input-row">
+      <textarea class="chat-input" id="chat-input" placeholder="Talk to your coach..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+      <button class="chat-send" id="chat-send" onclick="sendMsg()">↑</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- TRACKER -->
+<div id="section-tracker" style="display:none">
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">06</div>
+    <div class="section-title">TRAINING TRACKER</div>
+    <div class="section-sub">120 days + forever</div>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-meta">
+      <div class="progress-label">FOUNDATION PROGRESS</div>
+      <div class="progress-pct" id="prog-pct">0%</div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+    <div class="phase-markers">
+      <div class="phase-marker">LEARN</div>
+      <div class="phase-marker">FRICTION</div>
+      <div class="phase-marker">STABILIZE</div>
+      <div class="phase-marker">CEMENT</div>
+    </div>
+  </div>
+
+  <div class="tracker-grid" id="tracker-grid"></div>
+</div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title" id="modal-title">PROTOCOL</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<footer>WIRED TO WIN · NERVOUS SYSTEM ENGINEERING · THE NERVOUS SYSTEM IS ALWAYS LISTENING</footer>
+
+<script>
+const SYSTEM_PROMPT = `You are WIRE — the personal performance coach built entirely on the Wired to Win / EPIC nervous system engineering framework from 77 podcast episodes.
+
+ABOUT YOUR CLIENT:
+- Solo entrepreneur: Spider Creatives (UGC brokerage), AI Discovery-as-a-Service, Alfred (AI ops agent)
+- Running ₹1L/month sprint, 30-day kill condition
+- One live client: Nithyasri Elangovan
+- Building personal brand @ftsdp_ on X and Instagram
+- High-intensity growth sprint. Enjoys philosophy. Uses AI as a sparring partner.
+
+CORE FRAMEWORK:
+- Performance = conditioned nervous system state. Not willpower. Not motivation.
+- Pressure exposes the code. It does not build character.
+- Certainty Quadrant: engineer Potential + Belief first. Actions and Results follow.
+- Dominance Loop: micro-wins → dopamine + testosterone + serotonin → cortisol drops → more wins
+- Identity must be installed before results can change
+- Environment is always programming the nervous system
+- Recovery is an active trainable skill
+- Cells are structured gels (engines), not soups
+- RAS filters reality based on belief — train it deliberately
+
+PROTOCOLS YOU DEPLOY:
+15x15 Protocol, Structured Delusion (90 days), Go-Phrase, Physiological Sigh, Resonance Frequency Breathing (5.5/5.5), AGT, MCII (if-then scripting), Attribution Retraining, Triple D Review, DAD Protocol, State Activation Protocol, Swish Pattern, Chaos Conditioning, Effort Protocol, Micro-Win Stacking
+
+COACHING METHODOLOGY:
+- Open with: "Which loop are you in right now — spiraling up or spiraling down?"
+- Diagnose block as: Biochemical (HRV, glucose, cortisol), Structural (fascia, barefoot, cervical), or Psychological (identity gap, RAS miscalibration)
+- Assign protocol-specific homework after every session
+- When resistance hits at Day 21: "That's not a signal to stop. That's the nervous system fighting to preserve the old identity. It's a reverse indicator."
+- Always end with: DEPLOY NOW: [one action under 5 minutes]
+
+VOICE:
+Intense, biological, authoritative, aggressive. Warfare not wellness. Use: "The nervous system is always listening." "Lock in your gains." "Become the dealer, not the gambler." "Build the IDGAF muscle." "We weaponize shit in here." Reference: Huberman, Friston, Coyle, Kravitz, Pollack, Buhler, Dutton, Peterson. Call client "brother" occasionally. Never say "great question." Never give empty affirmations. Everything is nervous system mechanics.`;
+
+const SESSIONS = {
+  0: [
+    {name:"Intake Assessment — The Certainty Quadrant Diagnostic",meta:"Session 1 · 60 min · Psychological pillar",detail:"The host's intake process begins with diagnosing which quadrant you're living in. Map your current Potential belief, Certainty level, Actions, and Results. Identify whether your primary block is biochemical, structural, or psychological. Write your first 'I am' identity statement."},
+    {name:"Biochemical Baseline — HRV, Glucose & Cortisol Audit",meta:"Session 2 · 45 min · Biochemical pillar",detail:"Set up your HRV tracking (Oura/Whoop) and if possible a CGM. Chart your first week of morning HRV readings. Map energy crashes to meal timing. Identify your current dominance loop — are you stacking wins or losses biochemically?"},
+    {name:"Structural Diagnostic — Fascia, Feet & Proprioception",meta:"Session 3 · 45 min · Structural pillar",detail:"The barefoot diagnostic. Walk barefoot on uneven surface for 20 min. Do pogo jumps barefoot. Notice where you feel disconnected. Test your toe-to-glute connection. Identify shoes that are muting your sensory data."},
+    {name:"Identity Architecture — Build Your Structured Delusion",meta:"Session 4 · 60 min · Psychological pillar",detail:"Design your 90-day future identity. Write the 'I am' statement that describes the elite version of you that already exists 90 days from now. Make it primal. Make it biological. Install it using the 15x15 Protocol for the first time tonight."},
+    {name:"The Dominance Loop — Engineering Micro-Wins",meta:"Session 5 · 30 min · Biochemical pillar",detail:"Design your daily micro-win stack. List 10 actions you can complete each day that provide undeniable proof of forward motion. Start your performance journal. The nervous system needs data, not hype."},
+    {name:"Environmental Architecture Audit",meta:"Session 6 · 45 min · All three pillars",detail:"Walk through your physical environment. Audit lighting, scent, temperature, clutter, and social inputs. Identify the three biggest sources of environmental contamination programming mediocrity into your nervous system. Eliminate one today."},
+    {name:"The Go-Phrase Build + State Activation Protocol",meta:"Session 7 · 45 min · Psychological pillar",detail:"Build your personal Go-Phrase — 1 to 3 words, primal, biological. Pair it with a breath sequence and a physical anchor (chest pound, fist clench). Practice the full SAP sequence 10 times. This is your manual override for hesitation."},
+    {name:"Cognitive Bandwidth — DAD Protocol + Deep Work Architecture",meta:"Session 8 · 45 min · Biochemical pillar",detail:"Run every current task through Delete → Automate → Delegate → Do. Set up your first 90-minute time-boxed deep work block. Design your notification batching system. The prefrontal cortex has a finite bandwidth — protect it like your most valuable asset."},
+    {name:"Chaos Conditioning — First Stress Inoculation",meta:"Session 9 · 30 min · Structural pillar",detail:"First controlled stress exposure: max-effort sprint or cold plunge immediately followed by a precision cognitive task (journaling, math, decision-making). Train the amygdala to interpret adrenaline as a readiness signal, not a threat signal."},
+    {name:"MCII Scripting — Pre-load Your Decisions",meta:"Session 10 · 30 min · Psychological pillar",detail:"Write 5 if-then scripts for your highest-pressure recurring situations. 'If I miss a sale, then I immediately run attribution retraining and send the next outreach.' Pre-loaded decisions bypass the conscious mind under stress."},
+    {name:"Glucose Weaponization — Fuel Protocol Design",meta:"Session 11 · 45 min · Biochemical pillar",detail:"Map your full day fueling plan. Fiber + greens first, protein + fats second, carbs last. No naked carbs. Post-meal 10-min walk non-negotiable. Match carb load to neural drive demands of the day."},
+    {name:"Resonance Frequency Breathing — HRV Maximization",meta:"Session 12 · 30 min · Structural + Biochemical",detail:"Practice resonance frequency breathing: 5.5 sec inhale / 5.5 sec exhale for 10 minutes. This specific cadence maximizes HRV. Use it as your recovery tool between deep work blocks and before high-stakes events."},
+    {name:"The Pygmalion Audit — Identify Your Expectation Ceiling",meta:"Session 13 · 45 min · Psychological pillar",detail:"Identify the coaches, environments, and people who have placed invisible expectation ceilings on you. Map how their low predictions have contaminated your RAS. Consciously override each one with a biological counter-narrative."},
+    {name:"30-Day Learning Lock-In — Full Protocol Drill",meta:"Session 14 · 60 min · All three pillars",detail:"Full run-through of all 14 protocols. Score yourself on each. Identify your weakest pillar. Design your 90-day application plan prioritising your gaps. Write your Structured Delusion 90-day identity statement. The application sprint begins tomorrow."}
+  ],
+  1: [
+    {name:"Structured Delusion Activation — Day 1 of 90",meta:"Identity Friction Phase · Psychological",detail:"Begin the 90-day structured delusion sprint. Morning 15x15 + evening 15x15 every single day. Track the resistance. When doubt hits around Day 21 of this phase, recognise it as the nervous system fighting to preserve the old identity. Push through."},
+    {name:"Dominance Loop Calibration",meta:"Identity Friction Phase · Biochemical",detail:"Review your micro-win log from the first phase. Calibrate your daily win stack to create more frequent dopamine spikes. The chemical flywheel either runs or it doesn't — there is no neutral."},
+    {name:"Chaos Conditioning Level 2 — Dual Task Training",meta:"Identity Friction Phase · Structural",detail:"Add cognitive load to physical training. Sprint while solving a problem out loud. Lift while being asked decision-making questions. The NFL's elite QBs got fast processing by training under chaos — not in comfort."},
+    {name:"Identity Friction Diagnostic — Day 21 Check",meta:"Identity Friction Phase · Psychological",detail:"If you're hitting resistance, doubt, or impostor syndrome right now — this is the expected neurological response. Run the Swish Pattern on the hesitation. Use the Go-Phrase. Attribution retraining if needed. This is a reverse indicator."},
+    {name:"Social Contagion Audit",meta:"Identity Friction Phase · Environmental",detail:"Audit your top 5 daily social inputs. Are they broadcasting standards above or below your target identity? Mirror neurons are not metaphorical — you absorb the tension level of your environment. Eliminate the soft talkers."},
+    {name:"Pressure Progression — Low to Medium Stakes",meta:"Identity Friction Phase · All pillars",detail:"Move from low-stakes to medium-stakes performance environments. Make the public commitment that raises the stakes. Put a line in the sand. The nervous system adapts to the pressure level it is exposed to — not the pressure level you imagine."}
+  ],
+  2: [
+    {name:"Pattern Stabilization Check — Bold Decision Audit",meta:"Pattern Stabilization Phase · Psychological",detail:"By now you should be making decisions your old self would have avoided. Document three bold moves made in the last 30 days. This is neuroplasticity made visible. Lock in your gains."},
+    {name:"HRV Trend Analysis — 30-Day Biochemical Review",meta:"Pattern Stabilization Phase · Biochemical",detail:"Pull 30 days of HRV data. Identify the environmental and behavioral inputs that correlate with your highest readings. Double down on them. Eliminate the inputs correlated with your lowest readings."},
+    {name:"Advanced Chaos Conditioning — Strobe + Occlusion",meta:"Pattern Stabilization Phase · Structural",detail:"Add visual impairment training — patch one eye or use strobe glasses during skill work. This forces the brain to process faster with less information. F1 teams use heat chambers at 120°F and 170bpm heart rates for the same reason."},
+    {name:"The IDGAF Muscle — Indifference Training",meta:"Pattern Stabilization Phase · Psychological",detail:"Deliberately expose yourself to judgment and rejection this week. Make 10 cold outreach attempts. Post publicly about your work. Detach motor sequences from emotional outcomes. Become the dealer, not the gambler."},
+    {name:"Full Protocol Audit — Identify Gaps",meta:"Pattern Stabilization Phase · All pillars",detail:"Score yourself on all 14 protocols again. Where has your execution slipped? The nervous system is always listening — inconsistency broadcasts mediocrity. Tighten the protocols that have degraded."}
+  ],
+  3: [
+    {name:"Identity Tipping Point — The Mirror Test",meta:"Identity Tipping Point · Psychological",detail:"Look at who you were on Day 1. The posture, the tone, the operating system. Do you recognise it? This is neuroplasticity made physical. The new identity is no longer performed — it is automatic. Document the delta."},
+    {name:"High-Stakes Pressure Progression",meta:"Identity Tipping Point · All pillars",detail:"Move to high-stakes performance environments. Put your skills under the highest pressure available to you. This is the final test of whether the nervous system has truly been rewired or just temporarily altered."},
+    {name:"Foundation Lock — 120-Day Full Review",meta:"Identity Tipping Point · All pillars",detail:"Full 120-day audit across all three pillars: biochemical, structural, psychological. Document your HRV baseline improvement, identity statement evolution, and behavioural delta. You are ready to enter continuous conditioning."}
+  ],
+  4: [
+    {name:"Continuous Conditioning — Raise the Pressure Ceiling",meta:"Ongoing · All pillars",detail:"Progressively higher chaos exposure. Harder environments. Higher stakes. The nervous system either grows or shrinks — there is no maintenance mode. Design your next 90-day pressure progression."},
+    {name:"Identity Expansion — The Next Level",meta:"Ongoing · Psychological",detail:"Write the next iteration of your Structured Delusion. The identity that felt impossible 120 days ago is now your floor. What's the ceiling you need to install now? Begin the next 90-day sprint."},
+    {name:"Performance Measurement Under Maximum Pressure",meta:"Ongoing · Biochemical + Structural",detail:"Measure your KPIs under stress, not in comfort. Decision accuracy when time is compressed. HRV during high-stakes events. Shot make-rate under fatigue. The fastest way to improve anything is to measure it — especially under threat."},
+    {name:"Advanced Neurochemical Optimization",meta:"Ongoing · Biochemical",detail:"Review your full supplementation stack. Soviet-inspired protocols: Rhodiola, Eleuthero, Cordyceps for adaptation. Magnesium glycinate, GABA, L-theanine for sleep architecture. Continuous CGM monitoring for metabolic precision."}
+  ]
+};
+
+const PROTOCOLS = [
+  {name:"15×15 Protocol",tag:"Identity Installation",type:"daily",desc:"Mirror. Power posture. Repeat 'I am' statement 15x with intense emotion morning + night. Not an affirmation — a declaration. A command.",steps:["Stand in front of mirror in power posture (shoulders back, chest open)","Choose your 'I am' identity statement — primal, biological, future-state","Repeat 15 times with INTENSE physical emotion — shout it internally","Morning: do this as Step 3 of your priming sequence","Night: do this as Step 2 of your reconstruction sequence, right before sleep","The brain is most subconscious-connected at sleep onset — this is your highest neuroplasticity window"]},
+  {name:"Structured Delusion",tag:"90-Day Identity Sprint",type:"daily",desc:"Deliberate, emotionally charged rehearsal of future identity before evidence exists. Act, speak, decide as elite future self for 90 consecutive days.",steps:["Write a single identity statement: 'I am [elite future version]' — make it specific, biological, present tense","For 90 days: every decision must be filtered through 'what would this person do?'","Act as if the identity is already installed — before you have evidence","Around Day 21: resistance, doubt, impostor syndrome will spike. This is the nervous system fighting to preserve the old identity. Push through — it's a reverse indicator","By Day 45: bold decisions and conviction your old self would have avoided. Pattern stabilization.","Day 90: identity tipping point. The new operating system is cemented."]},
+  {name:"Go-Phrase",tag:"Manual Override",type:"situational",desc:"1-3 word primal command + specific breath + physical anchor. Instant shift out of hesitation into execution.",steps:["Choose your Go-Phrase: 1-3 words, primal, aggressive (e.g., 'I dominate', 'Let's eat', 'Execute')","Pair with a specific breath: one sharp nasal inhale + power exhale","Pair with a physical anchor: chest pound, fist clench, or arm snap","Practice the full sequence 10x daily for 30 days to wire the association","Deploy BEFORE high-stakes events: sales calls, performances, key decisions","When hesitation spikes: phrase + breath + anchor = instant override"]},
+  {name:"Physiological Sigh",tag:"Real-Time Reset",type:"situational",desc:"Two sharp nasal inhales + one long mouth exhale. Drops heart rate 20bpm in 30 seconds. Deploy between reps, after mistakes, mid-performance.",steps:["Two sharp nasal inhales (fill lungs completely, then inhale again sharply to top them off)","One long, slow mouth exhale — push all air out","HR drops up to 20bpm in 30 seconds","Use: after a mistake, between reps, during a break in performance, when panic spikes","This reinflates collapsed alveoli and rapidly activates the parasympathetic brake","Can be used invisibly in any high-stakes environment"]},
+  {name:"Resonance Frequency Breathing",tag:"HRV Maximization",type:"daily",desc:"5.5 sec inhale / 5.5 sec exhale for 10-20 minutes. Maximizes HRV. Use as recovery tool between deep work blocks.",steps:["Inhale for exactly 5.5 seconds through the nose","Exhale for exactly 5.5 seconds through the mouth or nose","Continue for 10-20 minutes","This specific cadence maximizes heart rate variability","Use before sleep, after deep work blocks, or during recovery periods","Do NOT use during active performance — use physiological sigh instead"]},
+  {name:"Anti-Glycolytic Training (AGT)",tag:"CNS Conditioning",type:"situational",desc:"Short power bursts + long rest. Builds mitochondrial density without frying the central nervous system with lactic acid.",steps:["Choose a power movement: box jumps, trap bar jumps, 30-yard sprints, or pogo jumps on toes","10 seconds MAX effort","15 seconds rest between reps","3 minutes rest between series","No lactic acid buildup = no CNS burnout","Jump roping on toes, barefoot when possible, to activate fascia chain","This builds fast-twitch fibers and mitochondrial density simultaneously"]},
+  {name:"Attribution Retraining",tag:"Post-Failure Protocol",type:"situational",desc:"Within 60 seconds of failure, answer three questions to prevent the nervous system from globalizing the error.",steps:["IMMEDIATELY after a failure, mistake, or miss — start the 60-second clock","Question 1: What was controllable? (Separate what you could and could not control)","Question 2: What was specific? (This was ONE event, not a pattern — keep it isolated)","Question 3: What is the next level? (What does this failure show you that needs upgrading?)","Do NOT allow the brain to globalize: 'I always fail' = threat state. 'This specific thing didn't work' = challenge state","Use the Physiological Sigh immediately after to drop the cortisol spike"]},
+  {name:"Triple D Review",tag:"Nightly Loop Closer",type:"daily",desc:"3 minutes every night. What did you Do, Defer, Delete? Closes open cognitive loops (Zeigarnik effect). Drops cortisol for sleep.",steps:["Set a 3-minute timer — do not go longer","Did: List what you completed and executed today (acknowledge the wins)","Deferred: What is legitimately moved to tomorrow (with a specific time)","Deleted: What you chose to remove from your list permanently","Open loops increase cortisol and prevent deep sleep — this protocol closes them","Write your top 3 priorities for tomorrow immediately after (physical pen, paper)"]},
+  {name:"DAD Protocol",tag:"Cognitive Bandwidth Protection",type:"daily",desc:"Delete → Automate → Delegate → Do. Run every task through this sequence to protect the prefrontal cortex from decision fatigue.",steps:["Before adding any task to your Do list, run it through this sequence first","Delete: Does this actually move the needle? If not — kill it immediately","Automate: Can a tool, system, or software handle this? If yes — set it up once","Delegate: Can someone else do this 80% as well as you? If yes — pass it","Do: Only execute what survives all three gates","The prefrontal cortex has finite daily bandwidth — every unnecessary decision depletes it for the decisions that matter"]},
+  {name:"MCII — If-Then Scripting",tag:"Pre-Loaded Decisions",type:"situational",desc:"Mental Contrasting + Implementation Intentions. Pre-load decisions before pressure hits using SWOOP structure.",steps:["Identify your highest-pressure recurring scenarios (sales rejection, performance mistakes, conflict)","For each: write the if-then script: 'If [trigger], then I immediately [response]'","Example: 'If I miss a sale, then I take a physiological sigh, run attribution retraining, and send the next outreach'","Example: 'If my confidence drops before a call, then I deploy the Go-Phrase and SAP sequence'","Pre-loaded decisions bypass the conscious mind under stress — they fire automatically","Write 5-10 scripts for your most common high-pressure triggers"]},
+  {name:"State Activation Protocol (SAP)",tag:"Peak State On Command",type:"situational",desc:"Multi-layered trigger sequence to enter peak state on command before high-stakes events.",steps:["Step 1: Postural rewire — stand tall, shoulders back, chin up, chest open","Step 2: Speak the Go-Phrase out loud (or intensely internally)","Step 3: Apply sensory trigger — peppermint scent, cold water on face, or specific music","Step 4: Identity Command — flash your identity statement with full emotion","Step 5: Physical action anchor — chest pound, snap, or specific movement","Practice the FULL sequence 10x daily so it fires automatically when deployed pre-performance"]},
+  {name:"Swish Pattern",tag:"Neural Prediction Rewrite",type:"situational",desc:"Pattern interrupt to overwrite a fear prediction with a dominance prediction. From Tony Robbins via the host.",steps:["Identify the specific moment of hesitation or failure you want to rewrite","Visualize a large, grainy, dark image of yourself in that hesitation/failure moment","In the bottom corner, place a small, vibrant, bright image of yourself absolutely dominating","With a physical 'swoosh' sound and intense emotion, make the dominant image EXPLODE and fill the frame — instantly replacing the failure image","Repeat 5-7 times rapidly without stopping","The speed and intensity are the mechanism — the brain rewires through emotional intensity and repetition"]},
+  {name:"Chaos Conditioning",tag:"Stress Inoculation",type:"situational",desc:"Deliberate cognitive + physical overload during training. Teaches the amygdala that pressure = readiness, not danger.",steps:["Level 1 (Month 1): Sprint immediately followed by precision task (writing, decision-making, math)","Level 2 (Month 2): Dual-task training — practice skill while solving problems out loud simultaneously","Level 3 (Month 3): Visual impairment — patch one eye or use strobe glasses during skill work","Level 4 (Ongoing): Cold plunge + breath hold immediately before high-stakes performance tasks","The goal is not to perform well under chaos — the goal is to make chaos feel familiar","Elite NFL QBs (Mahomes, Burrow, Purdy) developed fast processing because chaos was their normal training environment"]},
+  {name:"Effort Protocol",tag:"Gamification Engine",type:"situational",desc:"Reframe hard effort from suffering to fuel. Gamify any task using four required elements.",steps:["The task must have four elements to trigger the dopamine effort loop:","1. WINNABLE: You can actually complete this. The challenge is real but achievable.","2. NOVEL CHALLENGE: There is something new or unknown in it that forces adaptation","3. CLEAR GOALS: The definition of winning is unambiguous","4. FAST FEEDBACK: You know quickly whether you won or lost","Reframe difficult work explicitly before starting: 'This is fuel, not suffering'","Stanford research: when effort is reframed as energizing, the brain preserves glucose and sustains dopamine-driven motivation"]}
+];
+
+const SCIENCE = [
+  "Predictive Processing (Carl Friston)","The Dominance Loop / Winner Effect","Reticular Activating System (RAS)","Neuroplasticity + Hebb's Law","Interoception","Autonomic Flexibility + Vagal Tone","Heart Rate Variability (HRV)","Allostasis","Glucose Weaponization","The Olfactory Bypass","The Pygmalion Effect","Functional Psychopathy (Kevin Dutton)","Social Contagion + Mirror Neurons","Fascial Gel Theory (Dr. Gerald Pollack)","AMIT Method (Dr. Craig Buhler)","Cerebral Spinal Fluid + Breathwork","Soviet Adaptation Protocols"
+];
+
+const SCIENCE_DETAIL = {
+  "Predictive Processing (Carl Friston)":"The brain generates forward models of reality to minimize surprise. It predicts what will happen next and adjusts motor output and hormone release BEFORE the event occurs. This is why identity installation works — you're rewriting the prediction, not the reaction.",
+  "The Dominance Loop / Winner Effect":"Winning triggers: Dopamine rises (pursuit), Testosterone rises (risk tolerance), Cortisol drops (widens vision), Serotonin rises (stabilizes posture). This biochemical cascade physically makes subsequent victories more probable. Stack micro-wins to keep this loop running.",
+  "Reticular Activating System (RAS)":"The brain's filtration system. Scans millions of bits of data but only allows information relevant to your beliefs and identity to reach conscious awareness. Train your RAS deliberately through identity installation, or it trains itself on your worst fears.",
+  "Neuroplasticity + Hebb's Law":"Neurons that fire together, wire together. The brain structurally reorganizes itself based on repeated exposure. Emotion and intensity accelerate myelination (insulation) of these pathways. This is why the 15x15 requires INTENSE emotion — not casual repetition.",
+  "Interoception":"The ability to sense internal signals: heartbeat, breath, digestion, tension. High interoceptive awareness lets elite performers detect physiological spikes and regulate them BEFORE panic sets in. Build this through HRV monitoring and breathwork.",
+  "Autonomic Flexibility + Vagal Tone":"The ability of the nervous system to oscillate smoothly between Sympathetic (gas pedal) and Parasympathetic (brake pedal) states. Elite performers possess high vagal tone — they can shift states in seconds. Built through resonance frequency breathing and cold exposure.",
+  "Heart Rate Variability (HRV)":"Variation in time between heartbeats. High HRV = highly adaptable, recovered nervous system ready for chaos. Low HRV = sympathetic overdrive and fatigue. Track daily. Let it dictate your training intensity, not your ego.",
+  "Allostasis":"The brain proactively regulating the body's internal environment to meet PREDICTED demands. It raises your heart rate before the gun fires based on anticipation. This is why stress inoculation works — you reprogram the allostatic prediction.",
+  "Glucose Weaponization":"Unstable blood sugar causes the prefrontal cortex to misfire — increasing irritability, destroying decision-making speed, and narrowing vision. Eat fiber + greens first, protein second, carbs last. Never eat naked carbs. Post-meal movement blunts spikes.",
+  "The Olfactory Bypass":"Smell connects directly to the limbic system and amygdala, bypassing the thalamus. This allows specific scents to instantly trigger associative neuro-states. Use peppermint for focus, lavender for recovery. Pair scents with your State Activation Protocol to anchor peak states.",
+  "The Pygmalion Effect":"Coaches and leaders unconsciously allocate better feedback, patience, and developmental resources to performers they expect to succeed — starving others and creating a self-fulfilling prophecy. Identify which expectation ceilings have been installed in your nervous system from past coaches.",
+  "Functional Psychopathy (Kevin Dutton)":"Elite CEOs and athletes share traits with psychopaths: Ruthlessness, Charm, Focus, Mental Toughness, Fearlessness, Mindfulness, Action. Specifically, a deactivated amygdala under stress — they lock onto reward with zero fear static. This is the IDGAF Muscle.",
+  "Social Contagion + Mirror Neurons":"Human nervous systems co-regulate based on proximity. Mirror neurons cause you to automatically absorb the standards, tension, and tone of your environment. If you're surrounded by mediocrity, your nervous system adapts to that frequency to fit in. Eliminate soft-talking inputs.",
+  "Fascial Gel Theory (Dr. Gerald Pollack)":"Cells are not random chemical soups — they are structured gels powered by electrical charges and water. Fascia must be hydrated and activated barefoot to transmit force properly. This is why barefoot training and hydration are structural performance tools, not wellness trends.",
+  "AMIT Method (Dr. Craig Buhler)":"Advanced Muscle Integration Technique. Tests 110 muscles for proprioceptive control. If a muscle is neurologically inhibited, the practitioner stimulates the enthesis organ, adjusts the upper-cervical atlas, and restores immediate function. Many 'injuries' are deactivated muscles shifting stress to secondary tissues.",
+  "Cerebral Spinal Fluid + Breathwork":"The brain floats in CSF pumped by the breath and pelvic floor. Optimal breath rate to bridge Theta and Gamma brainwaves (flow state): 4-6 breaths per minute. Resonance frequency breathing at 5.5 sec / 5.5 sec maximizes this pump.",
+  "Soviet Adaptation Protocols":"In the 1970s-80s, Soviet youth athletes received: beef liver, raw colostrum, Rhodiola, Eleuthero, Cordyceps, and Phenibut for deep sleep. They engineered growth through environments and biochemistry, not just physical training. Modern equivalent: Rhodiola, Eleuthero, Cordyceps for adaptation + sleep stack for reconstruction."
+};
+
+let chatHistory = [];
+let isLoading = false;
+let apiKey = localStorage.getItem('w2w_api_key') || '';
+let completedDays = JSON.parse(localStorage.getItem('w2w_days') || '[]');
+
+function getDay(){
+  return completedDays.length + 1;
+}
+
+function saveKey(){
+  const k = document.getElementById('api-key').value.trim();
+  if(!k){return;}
+  apiKey = k;
+  localStorage.setItem('w2w_api_key', k);
+  document.getElementById('api-key').value = '';
+  document.getElementById('api-key').placeholder = 'API key saved ✓';
+  document.getElementById('key-msg').classList.remove('show');
+  initChat();
+}
+
+function initChat(){
+  const chat = document.getElementById('chat-messages');
+  chat.innerHTML = '';
+  chatHistory = [];
+  addMsg('coach', `<strong>The nervous system is always listening, brother.</strong><br><br>I'm WIRE — your Wired to Win performance coach. You are on <strong>Day ${getDay()}</strong> of the program.<br><br>I know your situation. You're running a ₹1L sprint, Stage 1 Spider Creatives, one live client. That sprint is chaos conditioning for your founder nervous system — treat it exactly that way.<br><br>Tell me what you need, or hit a quick prompt to start today's session. <strong>Lock in your gains.</strong>`);
+}
+
+function addMsg(role, html){
+  const chat = document.getElementById('chat-messages');
+  const d = document.createElement('div');
+  d.className = 'msg ' + role;
+  const init = role === 'coach' ? 'W2W' : 'YOU';
+  d.innerHTML = `<div class="msg-avatar ${role}">${init}</div><div class="msg-bubble ${role}">${html}</div>`;
+  chat.appendChild(d);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function showTyping(){
+  const chat = document.getElementById('chat-messages');
+  const d = document.createElement('div');
+  d.className = 'msg coach'; d.id = 'typing';
+  d.innerHTML = `<div class="msg-avatar coach">W2W</div><div class="typing-ind"><span></span><span></span><span></span></div>`;
+  chat.appendChild(d);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function fmt(t){
+  return t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>');
+}
+
+async function sendMsg(){
+  if(!apiKey){document.getElementById('key-msg').classList.add('show');return;}
+  const inp = document.getElementById('chat-input');
+  const msg = inp.value.trim();
+  if(!msg||isLoading)return;
+  inp.value=''; inp.style.height='auto';
+  addMsg('user', msg);
+  chatHistory.push({role:'user',content:msg});
+  isLoading=true;
+  document.getElementById('chat-send').disabled=true;
+  showTyping();
+  try{
+    const r = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYSTEM_PROMPT,messages:chatHistory})
+    });
+    const data = await r.json();
+    document.getElementById('typing')?.remove();
+    const reply = data.content?.[0]?.text || 'Signal lost. Reset and try again.';
+    chatHistory.push({role:'assistant',content:reply});
+    addMsg('coach', fmt(reply));
+  }catch(e){
+    document.getElementById('typing')?.remove();
+    addMsg('coach','Connection dropped. Your nervous system doesn\'t need wifi — reset and re-engage.');
+  }
+  isLoading=false;
+  document.getElementById('chat-send').disabled=false;
+}
+
+function sendQuick(msg){
+  document.getElementById('chat-input').value = msg;
+  sendMsg();
+}
+
+function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}}
+function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,100)+'px';}
+
+function showSection(id){
+  ['program','routines','protocols','coach','tracker'].forEach(s=>{
+    document.getElementById('section-'+s).style.display = s===id ? 'block' : 'none';
+  });
+  document.querySelectorAll('.nav-tab').forEach((t,i)=>{
+    const tabs=['program','routines','protocols','coach','tracker'];
+    t.classList.toggle('active', tabs[i]===id);
+  });
+  if(id==='coach' && !chatHistory.length && apiKey) initChat();
+  if(id==='coach' && !apiKey){document.getElementById('key-msg').classList.add('show');}
+  if(id==='tracker') renderTracker();
+  document.querySelectorAll('.stagger').forEach(el=>el.classList.add('loaded'));
+}
+
+function togglePhase(card){
+  document.querySelectorAll('.phase-card').forEach(c=>{
+    if(c!==card) c.classList.remove('active');
+  });
+  card.classList.toggle('active');
+}
+
+function renderSessions(){
+  Object.keys(SESSIONS).forEach(phaseIdx=>{
+    const container = document.getElementById('sessions-'+phaseIdx);
+    if(!container)return;
+    container.innerHTML='';
+    SESSIONS[phaseIdx].forEach((s,i)=>{
+      const done = completedDays.includes(`${phaseIdx}-${i}`);
+      const row = document.createElement('div');
+      row.className='session-row';
+      row.innerHTML=`<div class="session-num">S${String(i+1).padStart(2,'0')}</div><div class="session-info"><div class="session-name">${s.name}</div><div class="session-meta">${s.meta}</div></div><div class="session-check ${done?'done':''}">${done?'✓':''}</div>`;
+      row.onclick=()=>openSession(phaseIdx,i,row);
+      container.appendChild(row);
+    });
+  });
+}
+
+function openSession(phaseIdx, idx, row){
+  const s = SESSIONS[phaseIdx][idx];
+  const key = `${phaseIdx}-${idx}`;
+  const done = completedDays.includes(key);
+  showModal(s.name, `
+    <div class="modal-tag">${s.meta}</div>
+    <p>${s.detail}</p>
+    <button onclick="markDone('${key}',this)" style="margin-top:12px;padding:8px 16px;background:${done?'rgba(39,174,96,0.1)':'var(--red)'};border:1px solid ${done?'var(--green)':'var(--red)'};color:${done?'var(--green)':'#fff'};font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;cursor:pointer;text-transform:uppercase">${done?'✓ COMPLETED — MARK INCOMPLETE':'MARK SESSION COMPLETE'}</button>
+    <br><br>
+    <button onclick="coachOnThis('${s.name.replace(/'/g,"\\'")}',this)" style="margin-top:4px;padding:8px 16px;background:none;border:1px solid var(--border2);color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;cursor:pointer;text-transform:uppercase">COACH ME ON THIS SESSION ↗</button>
+  `);
+}
+
+function markDone(key, btn){
+  if(completedDays.includes(key)){
+    completedDays = completedDays.filter(d=>d!==key);
+  } else {
+    completedDays.push(key);
+  }
+  localStorage.setItem('w2w_days', JSON.stringify(completedDays));
+  renderSessions();
+  renderTracker();
+  closeModal();
+}
+
+function coachOnThis(name){
+  closeModal();
+  showSection('coach');
+  setTimeout(()=>{
+    sendQuick(`Walk me through this session and apply it to my current situation: ${name}`);
+  },300);
+}
+
+function renderProtos(){
+  const grid = document.getElementById('proto-grid');
+  if(!grid)return;
+  grid.innerHTML='';
+  PROTOCOLS.forEach(p=>{
+    const card = document.createElement('div');
+    card.className='proto-card';
+    card.innerHTML=`<div class="proto-tag">${p.tag}</div><div class="proto-name">${p.name}</div><div class="proto-desc">${p.desc}</div><div class="proto-type ${p.type}">${p.type}</div>`;
+    card.onclick=()=>openProto(p);
+    grid.appendChild(card);
+  });
+  const sg = document.getElementById('science-grid');
+  if(!sg)return;
+  sg.innerHTML='';
+  SCIENCE.forEach(s=>{
+    const pill = document.createElement('div');
+    pill.className='sci-pill';
+    pill.textContent=s;
+    pill.onclick=()=>showModal(s, `<p>${SCIENCE_DETAIL[s]||'Core neuroscience concept in the Wired to Win framework.'}</p>`);
+    sg.appendChild(pill);
+  });
+}
+
+function openProto(p){
+  const stepsHtml = p.steps ? `<ul>${p.steps.map(s=>`<li>${s}</li>`).join('')}</ul>` : '';
+  showModal(p.name, `
+    <div class="modal-tag">${p.tag} · ${p.type}</div>
+    <p>${p.desc}</p>
+    ${stepsHtml}
+    <button onclick="coachOnThis('${p.name.replace(/'/g,"\\'")} protocol')" style="margin-top:12px;padding:8px 16px;background:none;border:1px solid var(--border2);color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;cursor:pointer;text-transform:uppercase">COACH ME THROUGH THIS ↗</button>
+  `);
+}
+
+function renderTracker(){
+  const grid = document.getElementById('tracker-grid');
+  if(!grid)return;
+  grid.innerHTML='';
+  const totalDone = completedDays.length;
+  const phases = [{label:'LEARN',days:14,color:'var(--gold)'},{label:'FRICTION',days:6,color:'var(--red)'},{label:'STABILIZE',days:5,color:'#8e44ad'},{label:'CEMENT',days:3,color:'var(--green)'},{label:'∞',days:4,color:'var(--muted)'}];
+  let dayNum=1;
+  phases.forEach((ph,pi)=>{
+    for(let d=0;d<ph.days;d++){
+      const key=`${pi}-${d}`;
+      const done=completedDays.includes(key);
+      const isCurrent=!done && completedDays.filter(k=>k.startsWith(pi+'-')).length===d;
+      const div=document.createElement('div');
+      div.className=`tracker-day${done?' done':''}${isCurrent?' today':''}`;
+      div.innerHTML=`<div class="tracker-day-num">${dayNum}</div><div class="tracker-day-label">${ph.label}</div><div class="phase-indicator" style="background:${done?ph.color:isCurrent?ph.color:'var(--dim)'}"></div>`;
+      div.onclick=()=>openSession(pi,d,null);
+      grid.appendChild(div);
+      dayNum++;
+    }
+  });
+  const total=32;
+  const pct=Math.round((totalDone/total)*100);
+  document.getElementById('prog-pct').textContent=pct+'%';
+  document.getElementById('prog-fill').style.width=pct+'%';
+}
+
+function showModal(title, body){
+  document.getElementById('modal-title').textContent=title;
+  document.getElementById('modal-body').innerHTML=body;
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal(e){
+  if(!e||e.target===document.getElementById('modal'))
+    document.getElementById('modal').classList.remove('open');
+}
+
+document.querySelectorAll('.stagger').forEach(el=>el.classList.add('loaded'));
+renderSessions();
+renderProtos();
+renderTracker();
+if(apiKey){document.getElementById('api-key').placeholder='API key saved ✓';}
+</script>
+</body>
+</html>
